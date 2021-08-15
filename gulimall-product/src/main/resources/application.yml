@@ -2,12 +2,12 @@ server:
   port: 10000
 spring:
   datasource:
-    type: com.alibaba.druid.pool.DruidDataSource
-    druid:
-      driver-class-name: com.mysql.cj.jdbc.Driver
-      url: jdbc:mysql://10.211.55.3:3306/gulimall_pms?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
-      username: root
-      password: root
+#    type: com.alibaba.druid.pool.DruidDataSource
+#    druid:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.43.128:3306/gulimall_pms?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: root
 #      Nacos 注册中心
   cloud:
     nacos:
@@ -36,14 +36,14 @@ spring:
     #cache: true
   #配置Redis缓存
   redis:
-    host: 10.211.55.3
+    host: 192.168.43.128
     port: 6379
   #整合Spring Session 指定session是存到redis里
   session:
     store-type: redis
   #配置Zipkin链路追踪可视化展示
   zipkin:
-    base-url: http://10.211.55.3:9411/
+    base-url: http://192.168.43.128:9411/
     #关闭自己的服务发现功能
     discovery-client-enabled: false
     sender:

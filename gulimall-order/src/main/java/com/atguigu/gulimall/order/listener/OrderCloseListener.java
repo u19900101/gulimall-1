@@ -1,6 +1,6 @@
 package com.atguigu.gulimall.order.listener;
 
-import com.atguigu.gulimall.order.entity.OrderEntity;
+import com.atguigu.common.to.mq.OrderTo;
 import com.atguigu.gulimall.order.service.OrderService;
 import com.atguigu.gulimall.order.utils.AlipayTemplate;
 import com.rabbitmq.client.Channel;
@@ -28,9 +28,9 @@ public class OrderCloseListener {
     OrderService orderService;
 
     @RabbitHandler
-    public void listening(OrderEntity entity, Channel channel, Message message) throws IOException {
+    public void listening(OrderTo entity, Channel channel, Message message) throws IOException {
 
-        System.out.println("收到过期的订单，准备关闭订单。orderID:" + entity.getId() + "; orderSn:" + entity.getOrderSn());
+        System.out.println("收到过期的订单，准备关闭订单。orderID:"+entity.getId()+";orderSn:"+entity.getOrderSn());
         try {
             orderService.closeOrder(entity);
             //手动调用支付宝收单 p310 暂时不用手动

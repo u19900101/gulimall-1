@@ -1,26 +1,15 @@
 package com.atguigu.gulimall.auth.controller;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.TypeReference;
 import com.atguigu.common.constant.AuthServiceConstant;
-import com.atguigu.common.utils.HttpUtils;
-import com.atguigu.common.utils.R;
 import com.atguigu.common.vo.MemberResVo;
 import com.atguigu.gulimall.auth.feign.MemberFeignService;
-import com.atguigu.gulimall.auth.vo.SocialUser;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.http.HttpResponse;
-import org.apache.http.util.EntityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * @author 孟享广
@@ -37,7 +26,7 @@ public class OAuth2Controller {
     @GetMapping("/oauth2.0/weibo/success")
     public String weibo(@RequestParam("code") String code, HttpSession session) throws Exception {
 
-        Map<String, String> map = new HashMap<>();
+       /* Map<String, String> map = new HashMap<>();
         map.put("client_id", "4027135126");//和login.html的要保持一致
         map.put("client_secret", "");
         map.put("grant_type", "authorization_code");
@@ -78,6 +67,15 @@ public class OAuth2Controller {
         }else {
             //没有获取了access_token 登录失败 返回到登录页
             return "redirect:http://auth.gulimall.com/login.html";
-        }
+        }*/
+        MemberResVo memberResVo = new MemberResVo();
+        memberResVo.setUsername("kkkk");
+        memberResVo.setNickname("jingjing");
+        memberResVo.setExpiresIn(600000L);
+        memberResVo.setId(19900101L);
+        session.setAttribute(AuthServiceConstant.LOGIN_USER, memberResVo);
+//                servletResponse.addCookie(new Cookie("JSESSIONID", "dada").setDomain());
+        //登录成功 -> 跳转首页
+        return "redirect:http://gulimall.com";
     }
 }

@@ -9,7 +9,7 @@ spring:
     #配置sentinel
     sentinel:
       transport:
-        dashboard: localhost:8080
+        dashboard: localhost:8333
         #控制台的port
         port: 8719
     #阿里云对象上传
@@ -30,7 +30,7 @@ spring:
     name: gulimall-third-party
   #配置Zipkin链路追踪可视化展示
   zipkin:
-    base-url: http://10.211.55.3:9411/
+    base-url: http://192.168.43.128:9411/
     #关闭自己的服务发现功能
     discovery-client-enabled: false
     sender:
